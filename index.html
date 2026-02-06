@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Doo gâște 💘</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(#ffb6c1, pink);
+    font-family: Arial;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+#yesBtn {
+    font-size: 24px;
+    padding: 20px 40px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin: 20px;
+}
+
+#noBtn {
+    position: absolute;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.heart {
+    position: fixed;
+    color: red;
+    font-size: 20px;
+    animation: float 5s linear forwards;
+}
+
+@keyframes float {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-800px);
+    }
+}
+
+#message {
+    display:none;
+    font-size: 22px;
+    margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Vrei sa fim 2 gâște virtuale?💕</h1>
+
+<button id="yesBtn">Bineînțeles că da</button>
+<button id="noBtn">Nu</button>
+
+<div id="message">
+💌 Te invit la un pranz aniversar bombastic pentru a sarbatori impreuna momente pretioase si a ne ghiftui cu mancare si haz duminica ora pranzului orientativa ❤️  
+<br><br>
+Te iubesc natafleato! 💘
+</div>
+
+<audio autoplay loop>
+<source src="https://cdn.pixabay.com/audio/2022/10/25/audio_8b0e0c6a45.mp3">
+</audio>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const msg = document.getElementById("message");
+
+let scale = 1;
+
+noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+
+    scale -= 0.1;
+    noBtn.style.transform = `scale(${scale})`;
+});
+
+yesBtn.onclick = () => {
+    msg.style.display = "block";
+    yesBtn.style.display = "none";
+    noBtn.style.display = "none";
+};
+
+function createHeart(){
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.fontSize = Math.random()*20+15+"px";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>heart.remove(),5000);
+}
+
+setInterval(createHeart,300);
+</script>
+
+</body>
+</html>
